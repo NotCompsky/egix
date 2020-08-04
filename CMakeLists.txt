@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.10.0 FATAL_ERROR) # CONTRIBUTIONS WELCOME: Tests of previous/future versions which work or not
 
 
+set(EXIG_MAJOR_VERSION 0)
+set(EXIG_MINOR_VERSION 4)
+set(EXIG_PATCH_VERSION 0)
+set(EXIG_VERSION ${EXIG_MAJOR_VERSION}.${EXIG_MINOR_VERSION}.${EXIG_PATCH_VERSION})
+
+
 option(ENABLE_STATIC "Build static, rather than shared, library" OFF)
 option(BUILD_PROGRAM "Build GUI program, rather than just the library" ON)
 
@@ -9,6 +15,7 @@ project(Egix CXX) # WARNING: Sets some important variables about the plarform. D
 
 find_package(Boost REQUIRED COMPONENTS regex)
 find_package(Qt5   REQUIRED COMPONENTS Widgets)
+
 
 set(CMAKE_AUTOMOC ON)
 
@@ -65,6 +72,22 @@ if(BUILD_PROGRAM)
 		target_link_libraries(egixr -static)
 	endif()
 endif()
+
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+    "${PROJECT_BINARY_DIR}/ExigConfigVersion.cmake"
+    VERSION "${EXIG_VERSION}"
+    COMPATIBILITY SameMinorVersion
+)
+configure_package_config_file(
+    "${PROJECT_SOURCE_DIR}/ExigConfig.cmake.in"
+    "${PROJECT_BINARY_DIR}/ExigConfig.cmake"
+    INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/Exig"
+)
+install(FILES "${PROJECT_BINARY_DIR}/ExigConfigVersion.cmake"
+              "${PROJECT_BINARY_DIR}/ExigConfig.cmake"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/Exig")
 
 
 install(
