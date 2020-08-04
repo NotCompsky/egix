@@ -6,7 +6,7 @@
  */
 
 
-#include "editor.hpp"
+#include "egix/editor.hpp"
 #include "highlighter.hpp"
 #include "sql_name_dialog.hpp"
 #include "regopt.hpp"
@@ -501,6 +501,16 @@ void RegexEditor::dehumanise(){
 	MsgBox* const msgbox = new MsgBox(this, "Dehumanised Form", buf, 720);
 	msgbox->exec();
 	delete msgbox;
+}
+
+
+void RegexEditor::set_text(const QString& str){
+	this->text_editor->setPlainText(str);
+}
+
+
+QString RegexEditor::get_text() const {
+	return this->text_editor->toPlainText();
 }
 
 

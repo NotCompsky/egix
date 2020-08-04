@@ -5,7 +5,7 @@
  *     This copyright notice must be included at the beginning of any copied/modified file originating from this project, or at the beginning of any section of code that originates from this project.
  */
 
-#include "editor.hpp"
+#include "egix/editor.hpp"
 
 #include <QApplication>
 

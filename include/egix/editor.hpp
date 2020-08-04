@@ -18,12 +18,14 @@ class CodeEditor;
 class RegexEditor : public QDialog {
   public:
 	RegexEditor(QWidget* parent = nullptr);
-  private Q_SLOTS:
+  protected Q_SLOTS:
 	void test_regex();
 	void dehumanise();
 	virtual void load_file();
 	virtual void save_to_file();
-  private:
+	void set_text(const QString& str);
+	QString get_text() const;
+  protected:
 	void find_text();
 	void ensure_buf_sized(const size_t buf_sz);
 	bool does_user_want_optimisations() const;
