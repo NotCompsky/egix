@@ -9,6 +9,9 @@ RUN apt update \
 		pkg-config \
 		libdrm-intel1 \
 		libbsd-dev \
+		git \
+		cmake \
+		g++ \
 	\
 	&& git clone --depth 1 https://gitlab.freedesktop.org/mesa/mesa.git \
 	&& cd mesa \
